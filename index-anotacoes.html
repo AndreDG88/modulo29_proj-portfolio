@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- instação do Create React Lab
+        1- Abrir o terminal (F1) e executar o comando "npx create-react-app portifolio --template typescript"
+            nota: Caso não queira incluir um templape prévio, usar apenas "npx create-react-app nomeDoProjeto"
+
+        2- Caso tenha problemas com os icones, instalar o plugin "VSCODE-ICONS" no VScode
+
+        3- Criar seu Editor Config, criando um novo arquivo na pasta prinipal do projeto com o nome de ".editorconfig"
+            Instale também o plugin "EditorConfig for VS Code" no VScode
+            Este arquivo tem a função de garantir o padrão de escrita do código, independente de onde for aberto e de quem estiver utilizando
+            A - Dentro do arquivo editorconfig, use o comando "root = true" para informar que estas são as regras principais de código
+            B - logo abaixo use "[*]", para informar que as próximas instruções vão afetar todos os códigos.
+            c - coloque as seguintes configurações:
+                indent_style = space # para indentação em espaço.
+                indent_size = 2 # o tamanho da indentação será de 2 espaços.
+                end_of_line = lf # formatação do final da linha, o LF é o que possui maior compatibilidade entre os sistemas operacionais.
+                charset = utf-8 # é o encode do código, a formatação dos caracteres. No html padrão já é utilizado o utf-8.
+                trim_trailing_whitespace = true # obriga o usuário a colocar um espaço após símbolos e caracteres especiais.
+                insert_final_newline = true # para finalizar o arquivo obrigatoriamente com uma linha em branco.
+
+        4- Instalar e configurar o ESLint. No terminal, execute o comando "npx eslint --init"
+            Ele irá lhe fazer uma série de perguntas sobre como ele deve agir no projeto
+            Basta seguir respondendo até finalizar a instalação.
+
+        5- Instale também o plugin React Rooks, porém, IMPORTANTE, aqui teremos que seguir um caminho diferente da aula. Pois a ferramenta ESLInt passou por atualizações desde a gravação desta aula.
+            A - Além do react roocks, vamos precisar instalar mais dependências necessárias: "npm install eslint @eslint/js eslint-plugin-react @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-hooks --save-dev"
+            B - Configurar o eslint.config.mjs: Se o arquivo eslint.config.mjs não for criado automaticamente, você pode criá-lo manualmente e adicioná-lo à raiz do seu projeto com o seguinte conteúdo:
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import pluginReact from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  { languageOptions: { globals: globals.browser } },
+
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+
+  {
+    plugins: {
+      "react-hooks": reactHooks,
+    },
+    rules: {
+      "react-hooks/rules-of-hooks": "error", // Para apontar problemas no Hooks como erro.
+      "react-hooks/exhaustive-deps": "warn", // Para apontar algum problema nas dependências, ele irá apontar como um alerta.
+      "react/prop-types": "off", // Para desabilitar a função de utilizar o Prop-types, pois é melhor utilizar o typescript com o react.
+      //"react/react-in-jsx-scope": "off", // Para desabilitar a função de obrigar a importação do react em todos os arquivos, aonde as vezes ele não é utilizado.
+      "@typescript-eslint/explicit-module-boundary-types": "off" // Para não precisar explicitar o tipo de retorno nas funções.
+    }
+  },
+
+  {
+    settings: {
+      react: { version: "detect" } // Para o ESLint detectar a versão do React utilizado.
+    }
+  }
+];
+            c - Usar o ESLint no Projeto: Após ajustar estas configurações, você pode executar o comando "npx eslint ."
+
+        6- Instalando o Prettier, com o comando "npm install --save-dev eslint-plugin-prettier eslint-config-prettier" no terminal
+            Execute também o "npm install --save-dev --save-exact prettier"
+            Crie um arquivo na pasta principal com o nome de ".prettierrc" e ali crie sua configuração.
+            A - No caso desta aula, o professor utilisou a seguinte configuração:
+            {
+              "trailingComma": "none",
+              "semi": false,
+              "singleQuote": true
+            }
+            B - Agora para poder adicionar as regras do Prettier ao seu arquivo .mjs, você deve deixar ele assim:
+            - Adicionar o: import prettierPlugin from "eslint-plugin-prettier"
+            - em plugins, adicionar: prettier: prettierPlugin,
+            - Em Rules, adiconar:
+            "prettier/prettier": ["error", {
+                singleQuote: true,
+                trailingComma: 'none',
+                semi: false,
+              }],
+            - Por fim, no terminal executar o comando: npx eslint . --fix
+
+        7- Crie uma pasta com o nome .vscode, na pasta principal do arquivo
+            A - Dentro da pasta .vscode, crie im arquivo json com o nome "settings.json"
+            B - Neste arquivo, use a seguinte configuração:
+                {
+                  "editor.formatOnSave": false,
+                  "editor.codeActionsOnSave": {
+                  "source.fixAll.eslint": "always"
+                  }
+                }
+            C - Salve o arquivo e vai estar tudo certo,
+                talvez seja preciso reiniciar o vscode para tudo carregar e funcionar como deve
+                -->
+</head>
+<body>
+
+</body>
+</html>
